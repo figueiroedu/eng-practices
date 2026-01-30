@@ -336,6 +336,39 @@ Se é muito difícil ler o código:
 
 ---
 
+## A Pirâmide do Code Review
+
+É comum gastar muito tempo discutindo formatação e estilo, enquanto aspectos importantes (funcionalidade, performance, compatibilidade) recebem menos atenção.
+
+A pirâmide ajuda a priorizar **onde focar seu tempo**:
+
+        ▲
+       /·\        Code Style         ← Automatize
+      /···\       Tests              ← Existem? Cobrem os casos?
+     /·····\      Documentation      ← Está claro como usar?
+    /·······\     Implementation     ← Funciona? É seguro? Performa?
+   /·········\    API Semantics      ← Design correto? Faz sentido?
+  ▔▔▔▔▔▔▔▔▔▔▔▔▔
+
+| Camada | Foco | Automatizável? |
+|--------|------|----------------|
+| **API Semantics** | Design, contratos, breaking changes | Não |
+| **Implementation** | Funcionalidade, segurança, performance | Parcialmente |
+| **Documentation** | Clareza de uso, exemplos | Não |
+| **Tests** | Cobertura, casos de borda | Parcialmente |
+| **Code Style** | Formatação, naming | **Sim** |
+
+### O insight principal
+
+**Base da pirâmide = mais difícil de mudar depois.**
+
+- Gaste mais tempo em API e Implementation (decisões de design são caras de reverter)
+- Gaste menos tempo em Code Style
+
+> Idealmente, discussões sobre API Semantics já aconteceram antes da PR existir.
+
+---
+
 ## Análise de padrões
 
 ### Consistência
@@ -590,6 +623,6 @@ Não espere que cada CL seja perfeita. Espere que cada CL deixe o código **um p
 # Perguntas?
 
 ---
-
+*Referências: [The Code Review Pyramid - Gunnar Morling](https://www.morling.dev/blog/the-code-review-pyramid/)*
 *Baseado no Google Engineering Practices Documentation*
 *https://google.github.io/eng-practices/*
